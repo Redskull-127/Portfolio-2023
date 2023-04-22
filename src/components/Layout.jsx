@@ -6,6 +6,8 @@ import HomeScreen from './HomeScreen';
 import SkillsContent from './Skills/Skills';
 import LatestContent from './Latest/latest';
 import ContactContent from './Contact/Contact';
+import SupportContent from './Support/Support';
+
 
 const Layout = ({ children }) => {
   const router = useRouter();
@@ -13,6 +15,7 @@ const Layout = ({ children }) => {
   const isSkillsPage = router.pathname === '/skills'
   const isLatestPage = router.pathname === '/latest'
   const isContactPage = router.pathname === '/contact'
+  const isSupportPage = router.pathname === '/support'
 
   return (
     <div>
@@ -21,10 +24,11 @@ const Layout = ({ children }) => {
         className={`flex h-screen w-screen justify-end gap-5 max-sm:p-8 `}
       >
         <Navbar />
-        {isHomePage && <div className='w-[70%] '><HomeScreen /></div>}
+        {isHomePage && <div className='w-[70%]'><HomeScreen /></div>}
         {isSkillsPage && <div className='w-[70%] pt-40 px-24 '><SkillsContent /></div>}
         {isLatestPage && <div className='w-[70%] pt-40 px-24 '><LatestContent /></div>}
         {isContactPage && <div className='w-[70%] pt-40 px-24 '><ContactContent /></div>}
+        {isSupportPage && <div className='w-[70%] pt-40 px-24 '><SupportContent /></div>}
       </main>
     </div>
   );

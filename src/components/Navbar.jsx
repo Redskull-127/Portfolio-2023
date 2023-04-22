@@ -20,7 +20,11 @@ const navItems = {
     },
     contact: {
         href: '/contact',
-        label: 'Contact Us',
+        label: 'Contact Me',
+    },
+    support: {
+        href: '/support',
+        label: 'Support',
     },
 }
 
