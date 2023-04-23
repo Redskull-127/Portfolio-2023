@@ -28,16 +28,17 @@ const navItems = {
     },
 }
 
-export default function Navbar() {
+
+function Navbar() {
     return(
         <nav className="flex flex-col mt-24">
             {/* Desktop menu */}
             <div className="flex flex-col gap-2">
                 <Image src="/Images/bitmoji.png" width={150} height={150} alt="bit"/>
                 {Object.entries(navItems).map(([key, { href, label }]) => (
-                    <Link key={key} href={href}>
+                    <Link className="transition-all duration-200" key={key} href={href}>
                         <p className={clsx(
-                            'px-3 py-2 rounded-md text-base font-medium',
+                            'px-3 py-2 transition-all duration-200 rounded-md text-base font-medium',
                             usePathname() === href ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
                         )}>
                             {label}
@@ -49,3 +50,5 @@ export default function Navbar() {
         
     )
 }
+
+export default Navbar;
