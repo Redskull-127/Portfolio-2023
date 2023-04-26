@@ -34,7 +34,7 @@ function Navbar() {
         <nav className="flex flex-col mt-24">
             {/* Desktop menu */}
             <div className="flex flex-col gap-2">
-                <Image src="/Images/bitmoji.png" width={150} height={150} alt="bit"/>
+                <Image src="/Images/bitmoji.png" loading="lazy" width={150} height={150} alt="bit"/>
                 {Object.entries(navItems).map(([key, { href, label }]) => (
                     <Link className="transition-all duration-200" key={key} href={href}>
                         <p className={clsx(
