@@ -25,3 +25,8 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.iframe{
+  -webkit-transform:scale(0.7);
+  -moz-transform-scale: (0.7);
+}
