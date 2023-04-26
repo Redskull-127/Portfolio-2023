@@ -9,24 +9,24 @@
     "description": "Portfolio website for Meer Tarbani!",
     "icons": [
         {
-            "src": "/icon-192x192.png",
+            "src": "/bitmoji.ico",
             "sizes": "192x192",
-            "type": "image/png"
+            "type": "icon"
         },
         {
-            "src": "/icon-256x256.png",
+            "src": "/bitmoji.ico",
             "sizes": "256x256",
-            "type": "image/png"
+            "type": "icon"
         },
         {
-            "src": "/icon-384x384.png",
+            "src": "/bitmoji.ico",
             "sizes": "384x384",
-            "type": "image/png"
+            "type": "icon"
         },
         {
-            "src": "/icon-512x512.png",
+            "src": "/bitmoji.ico",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "icon"
         }
     ]
 }
