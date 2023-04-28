@@ -1,16 +1,27 @@
-<xml version="1.0" encoding="UTF-8">
-    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-        <url>
-            <loc>http://meertarbani.in/about</loc>
-        </url>
-        <url>
-            <loc>http://meertarbani.in/latest</loc>
-        </url>
-        <url>
-            <loc>http://meertarbani.in/contact</loc>
-        </url>
-        <url>
-            <loc>http://meertarbani.in/support</loc>
-        </url>
-    </urlset>
-</xml>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://meertarbani.in</loc>
+        <lastmod>2023-04-29</lastmod>
+    </url>
+    <url>
+        <loc>https://meertarbani.in/about</loc>
+        <lastmod>2023-04-29</lastmod>
+    </url>
+    <url>
+        <loc>https://meertarbani.in/skills</loc>
+        <lastmod>2023-04-29</lastmod>
+    </url>
+    <url>
+        <loc>https://meertarbani.in/projects</loc>
+        <lastmod>2023-04-29</lastmod>
+    </url>
+    <url>
+        <loc>https://meertarbani.in/contact</loc>
+        <lastmod>2023-04-29</lastmod>
+    </url>
+    <url>
+        <loc>https://meertarbani.in/support</loc>
+        <lastmod>2023-04-29</lastmod>
+    </url>
+</urlset>
