@@ -1,14 +1,51 @@
 import "@/styles/globals.css";
 import Head from "next/head";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import NextNProgress from "nextjs-progressbar";
+import { PlayIcon, PauseIcon } from "@/utils/Icons";
 
 export default function App({ Component, pageProps }) {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [songUrl, setSongUrl] = useState("");
+  useEffect(() => {
+    if (document.getElementById("audio")) {
+      const audio = document.getElementById("audio");
+      if (isPlaying) {
+        audio.play();
+      } else if (!isPlaying) {
+        audio.pause();
+      } else {
+        console.log("Error");
+      }
+      audio.addEventListener("ended", () => {
+        setIsPlaying(false);
+        console.log("Ended");
+      });
+    }
+
+  }, [isPlaying]);
+
   useEffect(() => {
     Aos.init({ duration: 250 });
   }, []);
+  useEffect(() => {
+    const handleReceiveMessage = (event) => {
+      const data = event.data;
+      if (typeof data == "string") {
+        console.log(data.slice(5));
+        setSongUrl(data.slice(5));
+      }
+    };
+
+    window.addEventListener("message", handleReceiveMessage);
+
+    return () => {
+      window.removeEventListener("message", handleReceiveMessage);
+    };
+  }, []);
+
   return (
     <>
       <NextNProgress />
@@ -23,11 +60,31 @@ export default function App({ Component, pageProps }) {
       </Head>
       <Component {...pageProps} />
       <iframe
-        src="https://novatorem-mauve-eight.vercel.app/api/spotify"
+        id="spotify"
+        src="https://novatorem-redskull-127.vercel.app/api/spotify"
         className="absolute top-0 left-[32%] iframe"
         height={150}
         width={750}
       ></iframe>
+      <div className="absolute top-14 left-[63%] cursor-pointer">
+        {songUrl && isPlaying ? (
+          <div onClick={() => setIsPlaying(false)}>
+            <PauseIcon />
+          </div>
+        ) : (
+          <div onClick={() => setIsPlaying(true)}>
+            <PlayIcon />
+          </div>
+        )}
+      </div>
+      {songUrl != "" && (
+        <audio
+          className="hidden"
+          src={songUrl}
+          id="audio"
+          muted={false}
+        ></audio>
+      )}
     </>
   );
 }
