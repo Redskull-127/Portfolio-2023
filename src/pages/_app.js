@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import NextNProgress from "nextjs-progressbar";
-import { PlayIcon, PauseIcon } from "@/utils/Icons";
+import { PlayIcon, PauseIcon, Spotify } from "@/utils/Icons";
+import Link from "next/link";
 
 export default function App({ Component, pageProps }) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -24,7 +25,6 @@ export default function App({ Component, pageProps }) {
         console.log("Ended");
       });
     }
-
   }, [isPlaying]);
 
   useEffect(() => {
@@ -77,6 +77,9 @@ export default function App({ Component, pageProps }) {
           </div>
         )}
       </div>
+      <Link href="https://open.spotify.com/user/to6rms2g0fzerpkwox1k4v33w" target={"_blank"} className="absolute top-14 left-[66%] cursor-pointer">
+        <Spotify />
+      </Link>
       {songUrl != "" && (
         <audio
           className="hidden"
