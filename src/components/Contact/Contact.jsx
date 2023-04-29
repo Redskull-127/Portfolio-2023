@@ -5,7 +5,7 @@ export default function ContactContent() {
         <div className="flex flex-col justify-start overflow-hidden items-start h-full">
             <h1 data-aos="fade-left" className="text-5xl">Contact</h1>
             <div data-aos="fade-left" className="my-10 w-full">
-                <Chips skill={"Send me an email!\nredskull@duck.com"} href={"mailto:redskull@duck.com"}/>
+                <Chips skill={"Send me an email!"} description={"redskull@duck.com"} href={"mailto:redskull@duck.com"}/>
             </div>
         </div>
     )

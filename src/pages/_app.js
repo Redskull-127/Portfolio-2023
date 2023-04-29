@@ -18,7 +18,6 @@ export default function App({ Component, pageProps }) {
       <NextNProgress />
       <Head>
         <title>Meer Tarbani&apos;s Portfolio</title>
-        <link rel="icon" href="/Images/bitmoji.png" />
         <meta name="description" content="Meer Tarbani Portfolio Website" />
         <meta
           name="keywords"

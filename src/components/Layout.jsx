@@ -7,7 +7,7 @@ import SkillsContent from './Skills/Skills';
 import LatestContent from './Latest/latest';
 import ContactContent from './Contact/Contact';
 import SupportContent from './Support/Support';
-
+import BlogContent from './Blog/Blog';
 
 const Layout = ({ children }) => {
   const router = useRouter();
@@ -16,6 +16,7 @@ const Layout = ({ children }) => {
   const isLatestPage = router.pathname === '/latest'
   const isContactPage = router.pathname === '/contact'
   const isSupportPage = router.pathname === '/support'
+  const isBlogPage = router.pathname === '/blog'
 
   return (
     <div>
@@ -29,6 +30,7 @@ const Layout = ({ children }) => {
         {isLatestPage && <div className='w-[70%] pt-40 px-24 '><LatestContent /></div>}
         {isContactPage && <div className='w-[70%] pt-40 px-24 '><ContactContent /></div>}
         {isSupportPage && <div className='w-[70%] pt-40 px-24 '><SupportContent /></div>}
+        {isBlogPage && <div className='w-[70%] pt-40 px-24 '><BlogContent /></div>}
       </main>
     </div>
   );

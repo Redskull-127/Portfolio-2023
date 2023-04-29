@@ -1,18 +1,8 @@
 import Chips from "@/utils/Chips";
-
-const Skills = [
-  { name: "Python" },
-  { name: "JavaScript" },
-  { name: "C++" },
-  { name: "React.js / Next.js" },
-  { name: "Node.js" },
-  { name: "Express.js" },
-  { name: "HTML / CSS" },
-  { name: "CI/CD Pipelines" },
-  { name: "Git" },
-]
+import { Skillset } from "@/CustomData/Data";
 
 const SkillsContent = () => {
+  const skills = Skillset();
   return (
     <div className="flex overflow-hidden flex-col justify-start items-start h-full">
       <h1 data-aos="fade-left" className="text-5xl">Skills</h1>
@@ -49,7 +39,7 @@ const SkillsContent = () => {
         </li>
       </ul> */}
       <div data-aos="fade-left" className="grid grid-cols-4 gap-3 my-5">
-      {Skills && Skills.map((skill, key) => (
+      {skills && skills.map((skill, key) => (
         <Chips key={key} skill={skill.name}/>
       ))}
       </div>

@@ -44,6 +44,9 @@ export default function Song() {
     }, [isPlaying]);
 
     useEffect(() => {
+        const handleToast = () => {
+            ShowToast({ text: "Press Space Bar to play song" });
+        }
         const handleReceiveMessage = (event) => {
             const data = event.data;
             if (typeof data == "string") {
@@ -53,9 +56,11 @@ export default function Song() {
         };
 
         window.addEventListener("message", handleReceiveMessage);
+        window.addEventListener("load", handleToast);
 
         return () => {
             window.removeEventListener("message", handleReceiveMessage);
+            window.removeEventListener("load", handleToast);    
         };
     }, []);
     return (

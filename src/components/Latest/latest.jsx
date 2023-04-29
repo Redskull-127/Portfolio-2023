@@ -1,16 +1,11 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Chips from "@/utils/Chips";
+import {LatestEvents} from "@/CustomData/Data";
 
 export default function LatestContent() {
     const [latest, setLatest] = useState([]);
-
-    // useEffect(() => { 
-    //     fetch("/api/github").then(res => res.json()).then((data) => {
-    //         console.log(data);
-    //     })
-    // },[]);
-
+    const [events, setEvents] = useState(LatestEvents());
     useEffect(() => {
         fetch("/api/github")
             .then(res => res.json())
@@ -32,10 +27,9 @@ export default function LatestContent() {
             </p>
 
             <div data-aos="fade-left" className="overflow-y-auto w-full my-4 flex flex-col gap-1">
-                {/* <Link href='https://gdscwowgujarat.app' target={"_blank"} className="cursor-pointer hover:text-gray-400 transition-all duration-300" >
-                        <p>GDSC WoW Gujarat - Google</p>
-                    </Link> */}
-                <Chips href="https://gdscwowgujarat.app" skill="GDSC WoW Gujarat - Google" description="GDSC WoW Gujarat - Google" />
+                {events.length > 0 && events.map((event, index) => {
+                    return <Chips key={index} skill={event.title} href={event.link} description={event.description} />
+                })}
             </div>
             <p data-aos="fade-left" className="mt-5 text-lg">
                 ~ Here are some of my latest projects:
