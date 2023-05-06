@@ -22,6 +22,10 @@ const navItems = {
         href: '/blog',
         label: 'Blog',
     },
+    chat: {
+        href: '/chat',
+        label: 'Chat',
+    },
     contact: {
         href: '/contact',
         label: 'Contact Me',

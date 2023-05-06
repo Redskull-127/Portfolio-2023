@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
+import {useRouter} from "next/router";
 import { PlayIcon, PauseIcon, Spotify } from "@/utils/Icons";
 import Link from "next/link";
 import { ToastContainer } from "react-toastify";
 import ShowToast from "@/utils/Toast";
 export default function Song() {
+    const router = useRouter();
     const [isPlaying, setIsPlaying] = useState(false);
     const [songUrl, setSongUrl] = useState("");
-
+    
     useEffect(() => {
         if (document.getElementById("audio")) {
             const audio = document.getElementById("audio");
@@ -25,8 +27,9 @@ export default function Song() {
             });
         }
     }, [isPlaying]);
-
+    
     useEffect(() => {
+        if(router.pathname !== "/chat") {
         const handleKeyPress = (e) => {
             if (e.code === "Space" && isPlaying) {
                 console.log("Space pressed");
@@ -40,8 +43,8 @@ export default function Song() {
         window.addEventListener("keypress", handleKeyPress)
         return () => {
             window.removeEventListener("keypress", handleKeyPress)
-        }
-    }, [isPlaying]);
+        }}
+    }, [isPlaying, router.pathname]);
 
     useEffect(() => {
         const handleToast = () => {

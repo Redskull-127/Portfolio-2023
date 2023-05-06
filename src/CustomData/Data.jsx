@@ -33,3 +33,24 @@ export function Skillset() {
     ]
     return Skills
 }
+
+export function TestData() {
+    const TestData = [
+        {
+            Name: "Meer Tarbani",
+            Message: "Hello World!",
+            Time: "12:00 PM",
+        },
+        {
+            Name: "Meer Tarbani",
+            Message: "Hello World!",
+            Time: "12:00 PM",
+        },
+        {
+            Name: "Meer Tarbani",
+            Message: "Hello World!",
+            Time: "12:00 PM",
+        },
+    ]
+    return TestData
+}

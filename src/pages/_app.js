@@ -5,8 +5,6 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import NextNProgress from "nextjs-progressbar";
 import Song from "@/components/Song";
-import ShowToast from "@/utils/Toast";
-import { ToastContainer } from "react-toastify";
 
 export default function App({ Component, pageProps }) {
   useEffect(() => {
