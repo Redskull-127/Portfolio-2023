@@ -3,7 +3,7 @@ import {useRouter} from "next/router";
 import { PlayIcon, PauseIcon, Spotify } from "@/utils/Icons";
 import Link from "next/link";
 import { ToastContainer } from "react-toastify";
-import ShowToast from "@/utils/Toast";
+import {ShowToast} from "@/utils/Toast";
 export default function Song() {
     const router = useRouter();
     const [isPlaying, setIsPlaying] = useState(false);

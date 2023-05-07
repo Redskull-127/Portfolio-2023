@@ -14,7 +14,7 @@ export default function HomeScreen() {
       })
   }, [])
   return (
-    <div data-aos="fade-left" className="w-[70%] pt-40 px-24 flex flex-col justify-start items-start h-full">
+    <div data-aos="fade-left" className="w-[70%] flex flex-col justify-start items-start h-full">
       <h1 className="text-5xl">Meer Tarbani</h1>
       <p className="mt-5">
         Hey, I&apos;m Meer. GDSC Lead at Silver Oak University | Organizer of

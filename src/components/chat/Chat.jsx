@@ -1,61 +1,57 @@
 import ChatChips from "@/utils/ChatChips"
-import { TestData } from "@/CustomData/Data"
-import { useEffect, useState } from "react"
-import { getDatabase, ref, set, onValue } from "firebase/database";
-import firebase_app from "@/Firebase/Config";
-
+import { useEffect, useState, useRef } from "react"
+import { addCollection, collectionRef } from "@/Firebase/realtimeDB"
+import { onSnapshot } from "firebase/firestore"
+import { ToastContainer } from "react-toastify";
+import { ShowErrorToast, ShowToast } from "@/utils/Toast";
 export default function ChatContent() {
     const [hydrated, setHydrated] = useState(false)
-    const [data, setData] = useState([])
+    const [messsages, setMessages] = useState([])
+    const nameRef = useRef()
+    const messageRef = useRef()
     var randomEmojie
     useEffect(() => {
-        const db = getDatabase(firebase_app);
-        const starCountRef = ref(db);
-        onValue(starCountRef, (snapshot) => {
-            const data = snapshot.val();
-            console.log(data)
-            setData(data.users)
-        });
+        const unsubscribe = onSnapshot(collectionRef, (snapshot) => {
+            setMessages(snapshot.docs.map(doc => ({ id: doc.id, data: doc.data() })))
+        })
+        return () => {
+            unsubscribe()
+        }
     }, [])
     useEffect(() => {
         setHydrated(true)
-    }, [])
+        if(document.getElementById("chatScreen") && messsages.length > 0) {
+            // scroll to bottom of chat
+            document.getElementById("chatScreen").scrollTop = document.getElementById("chatScreen").scrollHeight
+        }
+    }, [messsages])
     if (hydrated) {
         randomEmojie = require("random-unicode-emoji")
-    }
-    async function writeUserData(Name, Message) {
-        // const db = getDatabase(firebase_app);
-        await set(ref(getDatabase(firebase_app), 'users/' + crypto.randomUUID()), {
-            username: Name,
-            message: Message,
-            date: new Date().toLocaleString(),
-        });
-
-        return console.log("Data logged");
     }
     return (
         <div className="flex flex-col justify-start overflow-hidden items-start h-full">
             <h1 data-aos="fade-left" className="text-5xl">Chat</h1>
-            <div className=" my-10 p-3 overflow-y-scroll bg-[#111827] h-full rounded w-full">
-                {hydrated && TestData().map((data, index) => {
-                    return (
-                        <ChatChips
-                            key={index}
-                            Name={data.Name}
-                            Description={data.Message}
-                            Time={data.Time}
-                            Emojie={randomEmojie.random({ count: 1 })}
-                        />
+            <div id="chatScreen" className=" my-10 p-3 overflow-y-scroll bg-[#111827] h-full rounded w-full">
+                {hydrated && messsages.length > 0 && messsages.map((item, index) => {
+                    return (<a key={index} className="hover:bg-slate-600 select-none text-lg transition-all duration-200 cursor-pointer min-w-28 mb-5 h-18 px-5 flex flex-col justify-center items-start rounded-lg bg-[#111827]">
+                        <p className="flex justify-between w-full">{randomEmojie.random({ count: 1 }) + " "}{item.data.name}<span className="text-[0.75rem]">- {item.data.timestamp}</span></p>
+                        <p className="text-[0.8rem]">{item.data.message}</p>
+                    </a>
                     )
-                })
-                }
+                })}
             </div>
             {/* text box */}
             <div className="flex flex-row h-fit mb-5 justify-between items-center w-full">
-                <input className="w-[20%] ml-1 h-12 rounded-lg bg-[#111827] text-white p-3" type="text" placeholder="Type your name" />
-                <input className="w-[90%] mx-1 h-12 rounded-lg bg-[#111827] text-white p-3" type="text" placeholder="Type a message" />
+                <input ref={nameRef} className="w-[20%] ml-1 h-12 rounded-lg bg-[#111827] text-white p-3" type="text" placeholder="Type your name" />
+                <input ref={messageRef} className="w-[90%] mx-1 h-12 rounded-lg bg-[#111827] text-white p-3" type="text" placeholder="Type a message" />
                 <button onClick={() => {
-                    writeUserData("Meer Tarbani", "hue World!")
+                    if(nameRef.current.value.length > 0 && messageRef.current.value.length > 0) {
+                        addCollection(nameRef.current.value, messageRef.current.value)
+                        nameRef.current.value = ""
+                        messageRef.current.value = ""
+                        ShowToast({ text: "Message sent" })
+                    }
+                    else ShowErrorToast({ text: "Please fill in all fields" })
                 }} className="w-[full] h-12 rounded-lg bg-[#111827] text-white p-3">Send</button>
             </div>
         </div>
