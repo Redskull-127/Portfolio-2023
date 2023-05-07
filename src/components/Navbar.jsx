@@ -30,10 +30,6 @@ const navItems = {
         href: '/contact',
         label: 'Contact Me',
     },
-    support: {
-        href: '/support',
-        label: 'Support',
-    },
 }
 
 
