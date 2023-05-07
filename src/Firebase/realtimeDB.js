@@ -1,4 +1,4 @@
-import { collection, addDoc, Timestamp, getFirestore } from 'firebase/firestore'
+import { collection, addDoc, getFirestore } from 'firebase/firestore'
 import firebase_app from './Config'
 
 export const collectionRef = collection(getFirestore(firebase_app), 'users')
