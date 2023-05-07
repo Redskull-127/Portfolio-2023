@@ -6,7 +6,6 @@ import HomeScreen from './HomeScreen';
 import SkillsContent from './Skills/Skills';
 import LatestContent from './Latest/latest';
 import ContactContent from './Contact/Contact';
-import SupportContent from './Support/Support';
 import BlogContent from './Blog/Blog';
 import ChatContent from './chat/Chat';
 
@@ -15,7 +14,6 @@ const pageComponents = {
   '/skills': SkillsContent,
   '/latest': LatestContent,
   '/contact': ContactContent,
-  '/support': SupportContent,
   '/blog': BlogContent,
   '/chat': ChatContent,
 };
