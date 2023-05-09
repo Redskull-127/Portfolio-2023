@@ -73,8 +73,8 @@ export default function ChatContent() {
                     {hydrated && messages.length > 0 && messages.map((item, index) => {
                         return (<a key={index} className="hover:bg-slate-600 select-none text-lg transition-all duration-200 cursor-pointer min-w-28 mb-5 h-18 px-5 flex flex-col justify-center items-start rounded-lg bg-[#111827]">
                             <p className="flex justify-between w-full">{item.data.name}
-                            <span className="text-[0.75rem]">- {(item.data.timestamp).toDate().toLocaleTimeString({
-                            })}</span>
+                            <span className="text-[0.75rem]">- {(item.data.timestamp)?.toDate().toLocaleTimeString({
+                            }) || <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>}</span>
                             </p>
                             <p className="text-[0.8rem]">{item.data.message}</p>
                         </a>
