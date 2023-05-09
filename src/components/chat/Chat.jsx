@@ -79,7 +79,9 @@ export default function ChatContent() {
                             <p className="text-[0.8rem]">{item.data.message}</p>
                         </a>
                         )
-                    })}
+                    }) || <div className="w-full h-full flex flex-col justify-center items-center">
+                            <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-white"></div>
+                        </div>}
                 </div>
                 {/* text box */}
                 <div className="flex flex-row h-fit mb-5 justify-between items-center w-full">
