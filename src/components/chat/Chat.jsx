@@ -22,6 +22,7 @@ export default function ChatContent() {
         }
     }, [])
     useEffect(() => {
+        document.title = "Chat | Meer Tarbani's Portfolio"
         setHydrated(true)
         if (document.getElementById("chatScreen") && messages.length > 0) {
             // scroll to bottom of chat

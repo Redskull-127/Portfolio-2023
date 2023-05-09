@@ -1,6 +1,7 @@
 import Chips from "@/utils/Chips";
 import { Skillset } from "@/CustomData/Data";
 
+document.title = "Skills | Meer Tarbani's Portfolio"
 const SkillsContent = () => {
   const skills = Skillset();
   return (
