@@ -7,9 +7,9 @@ export const authOptions = {
    clientSecret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
   }),
  ],
- session: {
-  strategy: 'jwt',
- },
+//  session: {
+//   strategy: 'jwt',
+//  },
  secret: process.env.NEXT_SECRET,
 };
 export default NextAuth(authOptions);
