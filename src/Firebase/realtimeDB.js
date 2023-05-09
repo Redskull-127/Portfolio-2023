@@ -1,13 +1,15 @@
-import { collection, addDoc, getFirestore } from 'firebase/firestore'
+import { collection, addDoc, getFirestore, orderBy, query, serverTimestamp } from 'firebase/firestore'
 import firebase_app from './Config'
 
 export const collectionRef = collection(getFirestore(firebase_app), 'users')
-export async function addCollection (name, message) {
+export const collectionRefOrder = query(collectionRef, orderBy('timestamp', 'asc'))
+export async function addCollection (name, message, email) {
     try {
         addDoc(collectionRef, {
             name: name,
             message: message,
-            timestamp: new Date().toLocaleString()
+            email: email,
+            timestamp: serverTimestamp()
         })
     } catch (error) {
         console.error(error)
