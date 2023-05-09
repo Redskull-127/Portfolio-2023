@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useState, useRef } from "react"
 import { useSession, signIn, signOut } from 'next-auth/react';
-import { addCollection, collectionRef,collectionRefOrder } from "@/Firebase/realtimeDB"
-import { onSnapshot, orderBy, query } from "firebase/firestore"
+import { addCollection, collectionRefOrder } from "@/Firebase/realtimeDB"
+import { onSnapshot } from "firebase/firestore"
 import { ShowErrorToast, ShowToast } from "@/utils/Toast";
-import Image from "next/image";
+
 export default function ChatContent() {
     const { data, status } = useSession()
     const [hydrated, setHydrated] = useState(false)
@@ -22,7 +22,6 @@ export default function ChatContent() {
         }
     }, [])
     useEffect(() => {
-        document.title = "Chat | Meer Tarbani's Portfolio"
         setHydrated(true)
         if (document.getElementById("chatScreen") && messages.length > 0) {
             // scroll to bottom of chat

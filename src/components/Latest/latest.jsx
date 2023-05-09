@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Chips from "@/utils/Chips";
 import {LatestEvents} from "@/CustomData/Data";
-document.title = "Latest Projects & Events | Meer Tarbani's Portfolio"
 export default function LatestContent() {
     const [latest, setLatest] = useState([]);
     const [events, setEvents] = useState(LatestEvents());

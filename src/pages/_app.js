@@ -6,11 +6,32 @@ import "aos/dist/aos.css";
 import NextNProgress from "nextjs-progressbar";
 import Song from "@/components/Song";
 import { SessionProvider } from "next-auth/react";
-
+import { useRouter } from "next/router";
 export default function App({ Component, pageProps }) {
+  const router = useRouter();
   useEffect(() => {
     Aos.init({ duration: 250 });
-}, []);
+    switch (router.pathname) {
+      case "/":
+        document.title = "Meer Tarbani's Portfolio";
+        break;
+      case "/skills":
+        document.title = "Skills | Meer Tarbani's Portfolio";
+        break;
+      case "/latest":
+        document.title = "Latest Projects & Events | Meer Tarbani's Portfolio";
+        break;
+      case "/blog":
+        document.title = "Blog | Meer Tarbani's Portfolio";
+        break;
+      case "/chat":
+        document.title = "Chat | Meer Tarbani's Portfolio";
+        break;
+      case "/contact":
+        document.title = "Contact | Meer Tarbani's Portfolio";
+        break;
+    }
+}, [router.pathname]);
 
   return (
     <>

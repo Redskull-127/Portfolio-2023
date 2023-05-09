@@ -1,6 +1,5 @@
 import Chips from "@/utils/Chips"
 
-document.title = "Contact | Meer Tarbani's Portfolio"
 export default function ContactContent() {
     return(
         <div className="flex flex-col justify-start overflow-hidden items-start h-full">
