@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, useMemo } from "react"
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { addCollection, collectionRefOrder } from "@/Firebase/realtimeDB"
 import { onSnapshot } from "firebase/firestore"
@@ -9,29 +9,41 @@ export default function ChatContent() {
     const { data, status } = useSession()
     const [hydrated, setHydrated] = useState(false)
     const [messages, setMessages] = useState([])
-    const nameRef = useRef()
     const messageRef = useRef()
     var randomEmojie
     useEffect(() => {
         const unsubscribe = onSnapshot(collectionRefOrder, (snapshot) => {
-            // console.log("snapshot", snapshot.docs)
-            setMessages(snapshot.docs.map(doc => ({ id: doc.id, data: doc.data() })))
+            try {
+                if (snapshot.docs.length > messages.length) {
+                    document.getElementById("messageSound").play()
+                }
+            } catch (err) {
+                console.log(err.message)
+            } finally {
+
+                setMessages(snapshot.docs.map(doc => ({ id: doc.id, data: doc.data() })))
+            }
         })
         return () => {
             unsubscribe()
         }
-    }, [])
+    }, [messages.length])
+
     useEffect(() => {
         setHydrated(true)
-        if (document.getElementById("chatScreen") && messages.length > 0) {
-            // scroll to bottom of chat
-            document.getElementById("chatScreen").scrollTop = document.getElementById("chatScreen").scrollHeight
+        try {
+            if (document.getElementById("chatScreen") && messages.length > 0) {
+                document.getElementById("chatScreen").scrollTop = document.getElementById("chatScreen").scrollHeight
+            }
+        } catch (err) {
+            console.log(err.message)
+            ShowErrorToast({ text: "Error scrolling to bottom\nerr.message" })
         }
     }, [messages])
     if (hydrated) {
         randomEmojie = require("random-unicode-emoji")
     }
-    function uniqueEmojie(){
+    function uniqueEmojie() {
         const random = randomEmojie.random({ count: 1 }).map((item) => { return item.toString() })
         return random[0]
     }
@@ -54,27 +66,27 @@ export default function ChatContent() {
                     <div className="w-full flex">
                         <span className="text-5xl">Chat</span>
                         <div className="ml-7 flex flex-col h-full">
-                            <h1>Welcome</h1>
-                            <h1>{data.user.name}</h1>
+                            <span>Welcome</span>
+                            <span className="flex gap-2">{data.user.name}<img src={data.user.image != "" && data.user.image} height='24' width='24' className="rounded-full" alt="logo" /></span>
                         </div>
                     </div>
                     <button onClick={() => {
-                        try{
+                        try {
                             signOut()
                         } catch (err) {
-                            ShowErrorToast({text: "Error signing out\nerr.message"})
+                            ShowErrorToast({ text: "Error signing out\nerr.message" })
                         } finally {
-                            ShowToast({text: "Signed out"})
+                            ShowToast({ text: "Signed out" })
                         }
-                    }} className="text-xl inline-block w-28 bg-[#111827] p-3 rounded-lg text-[#EF4444]">
+                    }} className="text-lg inline-block w-28 bg-[#111827] transition-all duration-300 p-2 active:scale-50 rounded-lg text-[#EF4444]">
                         Sign out</button>
                 </div>
                 <div id="chatScreen" className=" my-10 p-3 overflow-y-scroll bg-[#111827] h-full rounded w-full">
                     {hydrated && messages.length > 0 && messages.map((item, index) => {
                         return (<a key={index} className="hover:bg-slate-600 select-none text-lg transition-all duration-200 cursor-pointer min-w-28 mb-5 h-18 px-5 flex flex-col justify-center items-start rounded-lg bg-[#111827]">
                             <p className="flex justify-between w-full">{item.data.name}
-                            <span className="text-[0.75rem]">- {(item.data.timestamp)?.toDate().toLocaleTimeString({
-                            }) || <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>}</span>
+                                <span className="text-[0.75rem]">- {(item.data.timestamp)?.toDate().toLocaleTimeString({
+                                }) || <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>}</span>
                             </p>
                             <p className="text-[0.8rem]">{item.data.message}</p>
                         </a>
@@ -91,10 +103,18 @@ export default function ChatContent() {
                             addCollection(`${uniqueEmojie()} ${data.user.name}`, messageRef.current.value, data.user.email)
                             messageRef.current.value = ""
                             ShowToast({ text: "Message sent" })
+
                         }
                         else ShowErrorToast({ text: "Please fill in all fields" })
                     }} className="w-[full] h-12 rounded-lg bg-[#111827] text-white p-3">Send</button>
                 </div>
+                <audio
+                    className="hidden"
+                    src="/Sound/incoming.mp3"
+                    id="messageSound"
+                    muted={false}
+                    autoPlay={false}
+                ></audio>
             </div>
         )
     }
