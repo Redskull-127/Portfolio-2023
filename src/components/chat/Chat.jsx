@@ -4,6 +4,7 @@ import { useSession, signIn, signOut } from 'next-auth/react';
 import { addCollection, collectionRefOrder } from "@/Firebase/realtimeDB"
 import { onSnapshot } from "firebase/firestore"
 import { ShowErrorToast, ShowToast } from "@/utils/Toast";
+import { GitHubIcon } from "@/utils/Icons";
 
 export default function ChatContent() {
     const { data, status } = useSession()
@@ -121,11 +122,19 @@ export default function ChatContent() {
     return (
         <div className="flex flex-col justify-start overflow-hidden items-start h-full">
             <h1 data-aos="fade-left" className="text-5xl">Chat</h1>
-            <div className="w-full h-full mt-10">
-                <button onClick={() => signIn("google")} className="flex flex-row justify-center items-center w-[fit-content] h-[fit-content] p-3 rounded-lg bg-[#111827] text-white">
-                    <img className="w-10 h-10" src="/Images/google.svg" alt="google logo" />
-                    <p className="ml-2">Sign in with Google</p>
-                </button>
+            <div className="w-full h-full flex gap-10 mt-10 justify-start items-start">
+                <div className="flex">
+                    <button onClick={() => signIn("google")} className="flex flex-row justify-center items-center w-[fit-content] h-[fit-content] p-3 rounded-lg bg-[#111827] text-white">
+                        <img className="w-10 h-10" src="/Images/google.svg" alt="google logo" />
+                        <p className="ml-2">Sign in with Google</p>
+                    </button>
+                </div>
+                <div className="flex">
+                    <button onClick={() => signIn("github")} className="flex flex-row justify-center items-center w-[fit-content] h-[fit-content] p-3 rounded-lg bg-[#111827] text-white">
+                        <img className="w-10 h-10" src="/Images/github.png" alt="google logo" />
+                        <p className="ml-2">Sign in with Github</p>
+                    </button>
+                </div>
             </div>
         </div>
     )
