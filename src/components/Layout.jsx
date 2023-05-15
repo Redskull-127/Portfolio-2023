@@ -18,17 +18,16 @@ const pageComponents = {
   '/chat': ChatContent,
 };
 
-const Layout = ({ children }) => {
+ const Layout = ({data}) => {
   const router = useRouter();
-  const PageComponent = pageComponents[router.pathname] || HomeScreen;
-
+  const PageComponent = pageComponents[router.pathname] ||  HomeScreen;
   return (
     <div>
       {/* Render sidebar, header, and footer */}
       <main className="flex h-screen w-screen justify-end gap-5 max-sm:p-8 ">
         <Navbar />
         <div className="w-[70%] pt-40 px-24 ">
-          <PageComponent />
+          {PageComponent === HomeScreen ? <HomeScreen github={data.github} twitter={data.twitter} /> : <PageComponent />}
         </div>
       </main>
     </div>

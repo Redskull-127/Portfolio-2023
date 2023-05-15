@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://meertarbani.in/sitemap.xml
+Sitemap: https://www.meertarbani.in/sitemap.xml
