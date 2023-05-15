@@ -4,7 +4,6 @@ import { useSession, signIn, signOut } from 'next-auth/react';
 import { addCollection, collectionRefOrder } from "@/Firebase/realtimeDB"
 import { onSnapshot } from "firebase/firestore"
 import { ShowErrorToast, ShowToast } from "@/utils/Toast";
-import { GitHubIcon } from "@/utils/Icons";
 
 export default function ChatContent() {
     const { data, status } = useSession()
