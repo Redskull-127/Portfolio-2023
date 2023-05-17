@@ -7,9 +7,9 @@ export default async function handler(req, res) {
 
   try {
     cloudinary.config({
-      cloud_name: "dd2fpuwag",
-      api_key: "874114542148822",
-      api_secret: "VAr1DycSM5bVOKI41T7i6yhrRUI",
+      cloud_name: `${process.env.NEXT_PUBLIC_CLOUDINARY}`,
+      api_key: `${NEXT_PUBLIC_CLOUDINARY_API}`,
+      api_secret: `${NEXT_PUBLIC_CLOUDINARY_SECRET}`,
     });
     const { file } = req.body;
     const uploadedResponse = await cloudinary.uploader.upload(file, {
