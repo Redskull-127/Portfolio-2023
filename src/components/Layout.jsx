@@ -27,7 +27,7 @@ const pageComponents = {
       <main className="flex h-screen w-screen justify-end gap-5 max-sm:p-8 ">
         <Navbar />
         <div className="w-[70%] pt-40 px-24 ">
-          {PageComponent === HomeScreen ? <HomeScreen github={data.github} twitter={data.twitter} /> : <PageComponent />}
+          <PageComponent/>
         </div>
       </main>
     </div>

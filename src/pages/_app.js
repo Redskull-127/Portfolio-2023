@@ -5,9 +5,10 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import NextNProgress from "nextjs-progressbar";
 import Song from "@/components/Song";
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
 import { SessionProvider } from "next-auth/react";
 import { useRouter } from "next/router";
+
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -33,7 +34,7 @@ export default function App({ Component, pageProps }) {
         document.title = "Contact | Meer Tarbani's Portfolio";
         break;
     }
-}, [router.pathname]);
+  }, [router.pathname]);
 
   return (
     <>
@@ -47,8 +48,8 @@ export default function App({ Component, pageProps }) {
         />
       </Head>
       <SessionProvider session={pageProps.session}>
-      <Component {...pageProps} />
-      <Analytics />
+        <Component {...pageProps} />
+        <Analytics />
       </SessionProvider>
       <Song />
     </>

@@ -1,8 +1,33 @@
 import {
   Arrow, GitHubIcon, TwitterIcon, LinkedinIcon
 } from "../utils/Icons"
+import { useEffect, useState } from "react";
 
-export default function HomeScreen({ github, twitter }) {
+async function getTwitterData(url) {
+  const twitterData = await fetch(
+    `${url}/api/twitter`
+  ).then((res) => res.json());
+  return twitterData;
+}
+
+async function getGithubData(url) {
+  const githubData = await fetch(
+    `${url}/api/github`
+  ).then((res) => res.json());
+  return githubData;
+}
+
+export default function HomeScreen() {
+  const [data, setData] = useState({});
+  useEffect(() => {
+    const fetchData = async () => {
+      setData({
+        twitter: await getTwitterData(`${process.env.NEXT_PUBLIC_HOMEPAGE}`),
+        github: await getGithubData(`${process.env.NEXT_PUBLIC_HOMEPAGE}`),
+      });
+    }
+    fetchData();
+  }, []);
   return (
     <div data-aos="fade-left" className="w-[70%] flex flex-col justify-start items-start h-full">
       <h1 className="text-5xl">Meer Tarbani</h1>
@@ -21,12 +46,12 @@ export default function HomeScreen({ github, twitter }) {
           </a>
           <a href="https://github.com/redskull-127" target={"_blank"} className="text-lg flex gap-2 cursor-pointer hover:text-gray-400 transition-all duration-300">
             <GitHubIcon />
-            {github && github.data.length != undefined ? `${github.data.length} repos` : 'Open'} GitHub
+            {data.github && data.github.data.length != undefined ? `${data.github.data.length} repos` : 'Open'} GitHub
             <Arrow />
           </a>
           <a href="https://twitter.com/meertarbani" target={"_blank"} className="text-lg flex gap-2 cursor-pointer hover:text-gray-400 transition-all duration-300">
             <TwitterIcon />
-            {twitter && twitter.data[0].statuses_count} tweets on Twitter
+            {data.twitter && data.twitter.data[0].statuses_count} tweets on Twitter
             <Arrow />
           </a>
         </ul>

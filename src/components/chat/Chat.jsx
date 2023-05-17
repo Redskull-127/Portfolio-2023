@@ -1,14 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
-import { useEffect, useState, useRef, useMemo } from "react"
+import { useEffect, useState, useRef } from "react"
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { addCollection, collectionRefOrder } from "@/Firebase/realtimeDB"
 import { onSnapshot } from "firebase/firestore"
 import { ShowErrorToast, ShowToast } from "@/utils/Toast";
+import { GifIcon } from "@/utils/Icons";
+import GiphyInterface from "@/utils/Giphy";
+
 
 export default function ChatContent() {
     const { data, status } = useSession()
     const [hydrated, setHydrated] = useState(false)
     const [messages, setMessages] = useState([])
+    const [gif, setGif] = useState(false)
     const messageRef = useRef()
     var randomEmojie
     useEffect(() => {
@@ -63,6 +67,7 @@ export default function ChatContent() {
         return (
             <div className="flex flex-col justify-start overflow-hidden items-start h-full">
                 <div data-aos="fade-left" className="w-full flex justify-between items-center">
+                    {gif === true ? <GiphyInterface search={messageRef.current?.value} showToast={ShowToast} showErrorToast={ShowErrorToast} addCollection={addCollection} userData={data} uniqueEmojie={uniqueEmojie} setGif={setGif} /> : null}
                     <div className="w-full flex">
                         <span className="text-5xl">Chat</span>
                         <div className="ml-7 flex flex-col h-full">
@@ -88,7 +93,9 @@ export default function ChatContent() {
                                 <span className="text-[0.75rem]">- {(item.data.timestamp)?.toDate().toLocaleTimeString({
                                 }) || <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>}</span>
                             </p>
-                            <p className="text-[0.8rem]">{item.data.message}</p>
+                            {/* <p className="text-[0.8rem]">{item.data.message}</p> */}
+                            {/* get last 4 letters (.gif) */}
+                            {item.data.message.slice(-4) === ".gif" ? <img src={item.data.message} className="rounded-xl" alt="gif" /> : <p className="text-[0.8rem]">{item.data.message}</p>}
                         </a>
                         )
                     }) || <div className="w-full h-full flex flex-col justify-center items-center">
@@ -97,7 +104,13 @@ export default function ChatContent() {
                 </div>
                 {/* text box */}
                 <div className="flex flex-row h-fit mb-5 justify-between items-center w-full">
-                    <input ref={messageRef} className="w-[90%] mx-1 h-12 rounded-lg bg-[#111827] text-white p-3" type="text" placeholder="Type a message" />
+                    <input ref={messageRef} className="w-[90%] mx-3 h-12 rounded-lg bg-[#111827] text-white p-3" placeholder="Type a message" />
+                    <button onClick={(e) => {
+                        e.preventDefault()
+                        setGif(gif === true ? false : true)
+                    }} className="w-[full] h-12 rounded-lg mx-3 bg-[#111827] text-white p-3">
+                        <GifIcon />
+                    </button>
                     <button onClick={() => {
                         if (messageRef.current.value.length > 0) {
                             addCollection(`${uniqueEmojie()} ${data.user.name}`, messageRef.current.value, data.user.email)

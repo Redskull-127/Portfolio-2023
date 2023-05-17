@@ -30,3 +30,8 @@ body {
   -webkit-transform:scale(0.7);
   -moz-transform-scale: (0.7);
 }
+
+/* hide scrollbar globally */
+::-webkit-scrollbar {
+  display: none;
+}
