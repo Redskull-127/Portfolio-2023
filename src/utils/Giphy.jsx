@@ -2,7 +2,8 @@ import { GiphyFetch } from '@giphy/js-fetch-api'
 import { Grid } from '@giphy/react-components'
 
 async function UploadGif ({ file, showToast, showErrorToast }) {
-    const fetchData = await fetch(`${process.env.NEXT_PUBLIC_HOMEPAGE}`,{
+    console.log(process.env.NEXT_PUBLIC_HOMEPAGE)
+    const fetchData = await fetch(`${process.env.NEXT_PUBLIC_HOMEPAGE}/api/cloudinary/upload`,{
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ file: file })

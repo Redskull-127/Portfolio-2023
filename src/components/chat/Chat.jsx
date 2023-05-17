@@ -93,9 +93,7 @@ export default function ChatContent() {
                                 <span className="text-[0.75rem]">- {(item.data.timestamp)?.toDate().toLocaleTimeString({
                                 }) || <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>}</span>
                             </p>
-                            {/* <p className="text-[0.8rem]">{item.data.message}</p> */}
-                            {/* get last 4 letters (.gif) */}
-                            {item.data.message.slice(-4) === ".gif" ? <img src={item.data.message} className="rounded-xl" alt="gif" /> : <p className="text-[0.8rem]">{item.data.message}</p>}
+                            {item.data.message.slice(-4) === ".gif" ? <img src={item.data.message} className="rounded-xl h-[30%] w-[30%]" alt="gif" /> : <p className="text-[0.8rem]">{item.data.message}</p>}
                         </a>
                         )
                     }) || <div className="w-full h-full flex flex-col justify-center items-center">

@@ -46,12 +46,12 @@ export default function HomeScreen() {
           </a>
           <a href="https://github.com/redskull-127" target={"_blank"} className="text-lg flex gap-2 cursor-pointer hover:text-gray-400 transition-all duration-300">
             <GitHubIcon />
-            {data.github && data.github.data.length != undefined ? `${data.github.data.length} repos` : 'Open'} GitHub
+            {data.github && data.github.data?.length != undefined ? `${data.github.data.length} repos` : 'Open'} GitHub
             <Arrow />
           </a>
           <a href="https://twitter.com/meertarbani" target={"_blank"} className="text-lg flex gap-2 cursor-pointer hover:text-gray-400 transition-all duration-300">
             <TwitterIcon />
-            {data.twitter && data.twitter.data[0].statuses_count} tweets on Twitter
+            {data.twitter && data.twitter?.data[0].statuses_count} tweets on Twitter
             <Arrow />
           </a>
         </ul>
