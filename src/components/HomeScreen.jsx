@@ -51,7 +51,7 @@ export default function HomeScreen() {
           </a>
           <a href="https://twitter.com/meertarbani" target={"_blank"} className="text-lg flex gap-2 cursor-pointer hover:text-gray-400 transition-all duration-300">
             <TwitterIcon />
-            {data.twitter && data.twitter?.data[0].statuses_count || "Open "} tweets on Twitter
+            {data.twitter && data.twitter?.data && data.twitter?.data[0].statuses_count || "Open "} tweets on Twitter
             <Arrow />
           </a>
         </ul>
