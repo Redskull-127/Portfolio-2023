@@ -1,8 +1,9 @@
+import { getAnalytics, isSupported, logEvent } from "firebase/analytics";
 import firebase_app from "./Config";
-import { getAnalytics, logEvent } from "firebase/analytics";
+const analytics = isSupported().then(yes => yes ? getAnalytics(firebase_app) : null);
 
-// const analytics = getAnalytics(firebase_app);
-export default async function logEvents(event_name, event_params) {
-    logEvent(getAnalytics(firebase_app), event_name, event_params);
-    return console.log("Event logged");
+export default async function getAnalyticsInstance() {
+    return logEvent(await analytics, "404", {
+        page: window.location.href
+    })
 }
