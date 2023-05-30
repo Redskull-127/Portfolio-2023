@@ -4,6 +4,11 @@ export function BlogData() {
             title: "JavaScript by Meer Tarbani",
             description: "Notion guide for JavaScript",
             link: "https://js.meertarbani.dev",
+        },
+        {
+            title: "Rest API with NodeJs & ExpressJs in 5 Steps",
+            description: "Notion guide for Rest API with NodeJs & ExpressJs in 5 Steps",
+            link: "https://meertarbani-127.notion.site/Rest-API-with-Node-JS-1edaefc62b70401088a5deddd8ed0132",
         }
     ]
     return BlogData
