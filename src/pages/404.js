@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Head from "next/head";
-import getAnalyticsInstance from "@/Firebase/analytics";
+import { getAnalyticsPageNotFound } from "@/Firebase/analytics";
 import { ShowToast, ShowErrorToast } from "@/utils/Toast";
 export default function NotFoundPage() {
   return (
@@ -22,7 +22,7 @@ export default function NotFoundPage() {
         <p
           onClick={async (e) => {
             if (process.env.NODE_ENV === "production") {
-              getAnalyticsInstance()
+              getAnalyticsPageNotFound()
                 .then(
                   ShowToast({
                     text: "Thank you for reporting this to the admin! We will fix this as soon as possible!",

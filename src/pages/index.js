@@ -1,7 +1,15 @@
 import Layout from "../components/Layout";
 import HomeScreen from "@/components/HomeScreen";
 import Head from "next/head";
+import { useEffect } from "react";
+import { getAnalyticsPageView } from "@/Firebase/analytics";
+
 const Home = () => {
+  useEffect(() => {
+    if(process.env.NODE_ENV === "production"){
+      getAnalyticsPageView();
+    }
+  }, []);
   return (
     <>
       <Head>
