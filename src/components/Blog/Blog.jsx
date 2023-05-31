@@ -1,25 +1,17 @@
 import Chips from "@/utils/Chips"
-import { BlogData } from "@/CustomData/Data"
-import remoteConfig from "@/Firebase/remoteConfig"
+import { getRemoteConfigValue } from "@/Firebase/remoteConfig"
 import { useEffect, useState } from "react"
-import { fetchAndActivate, getValue } from "firebase/remote-config"
-
 
 export default function BlogContent() {
     const [blogs, setBlogs] = useState([])
     useEffect(() => {
-        const remote = remoteConfig()
-        const getData = remote.then((remote) => {
-            remote.settings.minimumFetchIntervalMillis = 3600000
-            fetchAndActivate(remote).then(() => {
-                const blog = getValue(remote, "Blog_Data").asString()
-                const blogData = JSON.parse(blog)
-                setBlogs(blogData)
-            })
-        })
-        getData
+        const getBlogs = async () => {
+            const data = await getRemoteConfigValue({ key: "Blog_Data" })
+            setBlogs(data)
+        }
+        getBlogs()
         return () => {
-            getData
+            setBlogs([])
         }
     }, [])
     return (
@@ -28,7 +20,9 @@ export default function BlogContent() {
             <div data-aos="fade-left" className="my-10 flex flex-col gap-3 overflow-x-hidden overflow-y-auto w-full">
                 {blogs.length > 0 ? blogs.map((data, index) => {
                     return <Chips key={index} skill={data.title} href={data.link} description={data.description} />
-                }) : <h1 className="text-2xl">Loading...</h1>}
+                }) : <div className="w-full h-full flex flex-col justify-center items-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+            </div>}
             </div>
         </div>
     )

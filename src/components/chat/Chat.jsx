@@ -57,7 +57,7 @@ export default function ChatContent() {
             <div className="flex flex-col justify-start overflow-hidden items-start h-full">
                 <h1 data-aos="fade-left" className="text-5xl">Chat</h1>
                 <div className="w-full h-full flex flex-col justify-center items-center">
-                    <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+                    <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
                     <h1>Loading...</h1>
                 </div>
             </div>
