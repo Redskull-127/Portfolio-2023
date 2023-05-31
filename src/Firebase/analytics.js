@@ -3,9 +3,7 @@ import firebase_app from "./Config";
 const analytics = isSupported().then(yes => yes ? getAnalytics(firebase_app) : null);
 
 export async function getAnalyticsPageNotFound() {
-    return logEvent(await analytics, "404", {
-        page: window.location.href
-    })
+    return logEvent(await analytics, "page_not_found")
 }
 
 export async function getAnalyticsPageView() {
