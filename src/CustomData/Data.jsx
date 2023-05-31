@@ -9,6 +9,11 @@ export function BlogData() {
             title: "Rest API with NodeJs & ExpressJs in 5 Steps",
             description: "Notion guide for Rest API with NodeJs & ExpressJs in 5 Steps",
             link: "https://meertarbani-127.notion.site/Rest-API-with-Node-JS-1edaefc62b70401088a5deddd8ed0132",
+        },
+        {
+            title: "Deploying Node.js REST API for Free",
+            description: "Notion guide for Deploying Node.js REST API for Free in 3 Steps",
+            link: "https://meertarbani-127.notion.site/Deploy-NodeJS-REST-API-FREE-3ab8b2f39c5a4d70bc766aecd247a91c"
         }
     ]
     return BlogData
