@@ -35,7 +35,12 @@ export default function App({ Component, pageProps }) {
         break;
     }
   }, [router.pathname]);
-
+  useEffect(() => {
+    if(document.getElementById("profilePicture")){
+      const img = document.getElementById("profilePicture");
+      img.classList.add("animate-swipe");
+    }
+  }, []);
   return (
     <>
       <NextNProgress />

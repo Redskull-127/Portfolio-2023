@@ -35,3 +35,15 @@ body {
 ::-webkit-scrollbar {
   display: none;
 }
+
+/* @keyframes swipe {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: rotateY(3.14159rad);
+  }
+  100% {
+    transform: translateX(0);
+  }
+} */

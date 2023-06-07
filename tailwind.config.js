@@ -13,7 +13,23 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      animation: {
+        'swipe': 'swipe 1s ease-in-out forwards'
+      }
     },
+    keyframes:{
+      'swipe': {
+        '0%' : {
+          'transform': 'translateX(0)'
+        },
+        '50%' : {
+          'transform': 'rotateY(3.14159rad)'
+        },
+        '100%' : {
+          'transform': 'translateX(0)'
+        }
+      }
+    }
   },
   plugins: [],
 }
