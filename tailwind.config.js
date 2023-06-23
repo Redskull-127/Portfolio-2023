@@ -14,7 +14,8 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       animation: {
-        'swipe': 'swipe 1s ease-in-out forwards'
+        'swipe': 'swipe 1s ease-in-out forwards',
+        'shake': 'shake 0.8s ease-in-out forwards infinite'
       }
     },
     keyframes:{
@@ -26,6 +27,17 @@ module.exports = {
           'transform': 'rotateY(3.14159rad)'
         },
         '100%' : {
+          'transform': 'translateX(0)'
+        }
+      },
+      'shake': {
+        '0%': {
+          'transform': 'translateX(0)'
+        },
+        '50%': {
+          'transform': 'translateX(10px)'
+        },
+        '100%': {
           'transform': 'translateX(0)'
         }
       }

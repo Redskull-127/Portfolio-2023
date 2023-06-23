@@ -68,11 +68,11 @@ export default function Song() {
             <iframe
                 id="spotify"
                 src="https://novatorem-redskull-127.vercel.app/api/spotify"
-                className="absolute top-0 left-[32%] iframe"
+                className="absolute top-0 left-[32%] max-sm:left-[17%] iframe"
                 height={150}
                 width={750}
             ></iframe>
-            <div className="absolute top-14 left-[63%] cursor-pointer">
+            <div className="absolute top-14 left-[92%] cursor-pointer">
                 {songUrl && isPlaying ? (
                     <div onClick={() => setIsPlaying(false)}>
                         <PauseIcon />
@@ -83,7 +83,7 @@ export default function Song() {
                     </div>
                 )}
             </div>
-            <Link href="https://open.spotify.com/user/to6rms2g0fzerpkwox1k4v33w" target={"_blank"} className="absolute top-14 left-[66%] cursor-pointer">
+            <Link href="https://open.spotify.com/user/to6rms2g0fzerpkwox1k4v33w" target={"_blank"} className="absolute top-14 left-[98%] cursor-pointer">
                 <Spotify />
             </Link>
             {songUrl != "" && (

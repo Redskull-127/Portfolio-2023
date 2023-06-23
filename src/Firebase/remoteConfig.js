@@ -16,7 +16,6 @@ export async function getRemoteConfigValue({key}) {
     remote.settings.minimumFetchIntervalMillis = 1;
     const getData= fetchAndActivate(remote).then(() => {
       const blog = getValue(remote, `${key}`).asString();
-      console.log(blog);
       const blogData = JSON.parse(blog);
       return blogData;
     });

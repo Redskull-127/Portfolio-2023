@@ -24,9 +24,9 @@ const pageComponents = {
   return (
     <div>
       {/* Render sidebar, header, and footer */}
-      <main className="flex h-screen w-screen justify-end gap-5 max-sm:p-8 ">
+      <main className="flex h-screen w-screen justify-end gap-5  ">
         <Navbar />
-        <div className="w-[70%] pt-40 px-24 ">
+        <div className="w-[70%] pt-40 px-24 max-sm:px-10 max-sm:w-[85%] max-sm:pt-18">
           <PageComponent/>
         </div>
       </main>

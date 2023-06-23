@@ -65,7 +65,7 @@ export default function ChatContent() {
     }
     if (status === "authenticated") {
         return (
-            <div className="flex flex-col justify-start overflow-hidden items-start h-full">
+            <div className="flex flex-col justify-start overflow-hidden items-start h-full max-sm:h-screen max-sm:overflow-y-visible">
                 <div data-aos="fade-left" className="w-full flex justify-between items-center">
                     {gif === true ? <GiphyInterface search={messageRef.current?.value} showToast={ShowToast} showErrorToast={ShowErrorToast} addCollection={addCollection} userData={data} uniqueEmojie={uniqueEmojie} setGif={setGif} /> : null}
                     <div className="w-full flex">

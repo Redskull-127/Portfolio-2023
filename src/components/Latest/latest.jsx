@@ -28,7 +28,7 @@ export default function LatestContent() {
             })
     }, []);
     return (
-        <div className="flex flex-col justify-start overflow-hidden items-start h-full">
+        <div className="flex flex-col justify-start overflow-hidden items-start h-full max-sm:h-screen max-sm:overflow-y-visible">
             <h1 data-aos="fade-left" className="text-5xl">Latest</h1>
             <p data-aos="fade-left" className="mt-5 text-lg">
                 ~ Latest Events

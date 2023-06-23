@@ -15,7 +15,7 @@ export default function BlogContent() {
         }
     }, [])
     return (
-        <div className="flex flex-col justify-start overflow-hidden items-start h-full">
+        <div className="flex flex-col justify-start overflow-hidden items-start h-full max-sm:h-screen max-sm:overflow-y-visible">
             <h1 data-aos="fade-left" className="text-5xl">Blog</h1>
             <div data-aos="fade-left" className="my-10 flex flex-col gap-3 overflow-x-hidden overflow-y-auto w-full">
                 {blogs.length > 0 ? blogs.map((data, index) => {
