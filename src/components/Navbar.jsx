@@ -3,7 +3,6 @@
 import Link from "next/link";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
@@ -21,7 +20,7 @@ const navItems = [
     label: "Latest",
   },
   {
-    href: "/blog",
+    href: "/blogs",
     label: "Blog",
   },
   {

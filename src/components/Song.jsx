@@ -32,11 +32,9 @@ export default function Song() {
         if(router.pathname !== "/chat") {
         const handleKeyPress = (e) => {
             if (e.code === "Space" && isPlaying) {
-                console.log("Space pressed");
                 setIsPlaying(false);
             }
             if (e.code === "Space" && !isPlaying) {
-                console.log("Space pressed");
                 setIsPlaying(true);
             }
         }
@@ -48,12 +46,11 @@ export default function Song() {
 
     useEffect(() => {
         const handleToast = () => {
-            ShowToast({ text: "Press Space Bar to play song" });
+            ShowToast({ text: "Press Space Bar to play/pause song" });
         }
         const handleReceiveMessage = (event) => {
             const data = event.data;
             if (typeof data == "string") {
-                console.log(data.slice(5));
                 setSongUrl(data.slice(5));
             }
         };
