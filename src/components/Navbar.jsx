@@ -33,14 +33,13 @@ const navItems = [
   },
 ];
 
-function Navbar() {
-  const defaultImg = "/icon-256x256.png";
+const Navbar = () => {
   const { data, status } = useSession();
-  const [img, setImg] = useState(defaultImg);
+  const [img, setImg] = useState("/icon-256x256.png");
 
   useEffect(() => {
     if (status === "authenticated") {
-      setImg(data.user.image || defaultImg);
+      setImg(data.user.image);
     }
   }, [status, data]);
 
@@ -81,4 +80,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default Navbar
