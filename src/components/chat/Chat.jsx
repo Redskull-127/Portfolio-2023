@@ -32,7 +32,26 @@ export default function ChatContent() {
             unsubscribe()
         }
     }, [messages.length])
+    useEffect(() => {
+        function uniqueEmojie() {
+            if (hydrated) {
+                const random = randomEmojie.random({ count: 1 }).map((item) => { return item.toString() })
+                return random[0]
+            }
+        }
+        window.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" && messageRef.current?.value.length > 0) {
+                if (messageRef.current.value.length > 0) {
+                    addCollection(`${uniqueEmojie()} ${data.user.name}`, messageRef.current.value, data.user.email)
+                    messageRef.current.value = ""
+                    ShowToast({ text: "Message sent" })
 
+                }
+                else ShowErrorToast({ text: "Please fill in all fields" })
+
+            }
+        })
+    }, [data, hydrated, randomEmojie])
     useEffect(() => {
         setHydrated(true)
         try {
@@ -149,4 +168,3 @@ export default function ChatContent() {
         </div>
     )
 }
-
