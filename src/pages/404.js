@@ -21,7 +21,7 @@ export default function NotFoundPage() {
         <p>or</p>
         <p
           onClick={async (e) => {
-            if (process.env.NODE_ENV === "production") {
+            if (process.env.NODE_ENV !== "production") {
               getAnalyticsPageNotFound()
                 .then(
                   ShowToast({
@@ -29,6 +29,7 @@ export default function NotFoundPage() {
                   })
                 )
                 .catch((err) => {
+                  console.error(err);
                   ShowErrorToast({
                     text: "Something went wrong while reporting this to the admin!",
                   });
