@@ -45,3 +45,4 @@ next-env.d.ts
 .vscode
 noderunner.exe
 pnpm-lock.yaml
+test.json

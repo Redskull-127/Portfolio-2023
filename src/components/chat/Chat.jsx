@@ -6,6 +6,7 @@ import { onSnapshot } from "firebase/firestore"
 import { ShowErrorToast, ShowToast } from "@/utils/Toast";
 import { GifIcon } from "@/utils/Icons";
 import GiphyInterface from "@/utils/Giphy";
+import PalmChat from "./PalmChat";
 
 
 export default function ChatContent() {
@@ -14,6 +15,8 @@ export default function ChatContent() {
     const [messages, setMessages] = useState([])
     const [gif, setGif] = useState(false)
     const messageRef = useRef()
+    const [palm, setPalm] = useState(false)
+
     var randomEmojie
     useEffect(() => {
         const unsubscribe = onSnapshot(collectionRefOrder, (snapshot) => {
@@ -148,6 +151,11 @@ export default function ChatContent() {
             </div>
         )
     }
+
+    if (palm) {
+        return <PalmChat setPalm={setPalm} />
+    }
+
     return (
         <div className="flex flex-col justify-start overflow-hidden items-start h-full">
             <h1 data-aos="fade-left" className="text-5xl">Chat</h1>
@@ -162,6 +170,12 @@ export default function ChatContent() {
                     <button onClick={() => signIn("github")} className="flex flex-row justify-center items-center w-[fit-content] h-[fit-content] p-3 rounded-lg bg-[#111827] text-white">
                         <img className="w-10 h-10" src="/Images/github.png" alt="google logo" />
                         <p className="ml-2">Sign in with Github</p>
+                    </button>
+                </div>
+                <div className="flex">
+                    <button onClick={() => setPalm(true)} className="flex flex-row justify-center items-center w-[fit-content] h-[fit-content] p-3 rounded-lg bg-[#111827] text-white">
+                        <img className="w-10 h-10" src="/Images/palm.webp" alt="google logo" />
+                        <p className="ml-2">Chat with PaLM AI</p>
                     </button>
                 </div>
             </div>
