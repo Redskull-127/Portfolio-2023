@@ -11,7 +11,7 @@ export default async function PalmAPI(req, res) {
             },
             method: "POST"
         }
-      ).then((res) => res.json());
+      ).then((res) => res.json())
       res.status(200).json({ response: data.candidates[0].output });
     } catch(err) {
       console.log(err);

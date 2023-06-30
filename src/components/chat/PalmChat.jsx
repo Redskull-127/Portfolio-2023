@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react"
 import { ShowErrorToast, ShowToast } from "@/utils/Toast";
+import ReactMarkdown from "react-markdown";
 
 async function getRes(prompt) {
     console.log(prompt)
@@ -12,6 +13,7 @@ async function getRes(prompt) {
 export default function PalmChat({ setPalm }) {
     const palmChat = useRef()
     const [messages, setMessages] = useState([])
+    const input = '# This is a header\n\nAnd this is a paragraph'
 
 
     function sendMsg() {
@@ -43,9 +45,12 @@ export default function PalmChat({ setPalm }) {
             <div id="palmScreen" className=" my-10 p-3 overflow-y-scroll bg-[#111827] h-full rounded w-full">
                 {messages.length > 0 ? messages.map((item, index) => {
                     return (
-                        <div key={index} className=" hover:bg-slate-600 text-lg transition-all duration-200 cursor-pointer min-w-28 mb-5 h-18 px-5 flex flex-col  rounded-lg bg-[#111827] justify-start items-start">
-                            <p className="text-[0.8rem]">{item.message}</p>
-                            <p className="text-[0.8rem]">{item.response}</p>
+                        <div key={index} id="md-chat" className=" hover:bg-slate-600 text-lg transition-all duration-200 cursor-pointer min-w-28 mb-5 h-18 p-5 flex flex-col  rounded-lg bg-[#111827] justify-start items-start">
+                            <p className="text-[0.8rem]">
+                                <ReactMarkdown>
+                                    {item.response}
+                                </ReactMarkdown>
+                            </p>
                         </div>
                     )
                 }) : <div className="text-xl transition-all duration-200 cursor-pointer min-w-28 mb-5 h-full px-5 flex  rounded-lg bg-[#111827] justify-center items-center">
